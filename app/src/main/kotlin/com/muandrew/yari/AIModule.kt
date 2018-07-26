@@ -1,6 +1,8 @@
 package com.muandrew.yari
 
+import bwem.BWEM
 import com.muandrew.yari.common.agent.AgentFactory
+import com.muandrew.yari.common.debug.BWEMHightlighter
 import com.muandrew.yari.common.debug.UnitHighlighter
 import com.muandrew.yrai.agent.Agent
 import org.openbw.bwapi4j.BW
@@ -12,16 +14,21 @@ import org.openbw.bwapi4j.unit.Unit
 class AIModule : BWEventListener {
 
     private lateinit var bw: BW
+    private lateinit var bwem: BWEM
+    private lateinit var map: bwem.map.Map
     private lateinit var self: Player
     private var listeners: MutableList<Listener> = mutableListOf()
     private var unitAgents: MutableMap<Int, Agent> = mutableMapOf()
 //    private val abstractAgents = listOf()
 
-    fun init(bw: BW) {
+    fun initialize(bw: BW) {
         this.bw = bw
+        this.bwem = BWEM(bw)
     }
 
     override fun onStart() {
+        bwem.initialize(true)
+        map = bwem.map
         // v(s) =  r(s) + gamma * argmax a ( sum ( t(s,a,s') + v(s')) )
         for (p in bw.allPlayers) {
             println("id: ${p.id} name: ${p.name}")
@@ -30,6 +37,7 @@ class AIModule : BWEventListener {
             }
         }
         listeners.add(UnitHighlighter(bw, self))
+        listeners.add(BWEMHightlighter(bw, map))
     }
 
     override fun onEnd(isWinner: Boolean) {

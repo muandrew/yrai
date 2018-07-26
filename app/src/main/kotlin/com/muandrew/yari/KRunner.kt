@@ -7,6 +7,6 @@ fun main(args: Array<String>) {
     ColorModel.getRGBdefault()
     val aiModule = AIModule()
     val bw = BW(aiModule, BW.BridgeType.OPENBW, false)
-    aiModule.init(bw)
+    aiModule.initialize(bw)
     bw.startGame()
 }
