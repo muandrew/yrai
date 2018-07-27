@@ -1,6 +1,7 @@
 package com.muandrew.root;
 
 import com.muandrew.ui.Native;
+import com.muandrew.util.OSType;
 
 import java.awt.image.ColorModel;
 
@@ -10,7 +11,9 @@ class Root {
     // vm arguments
     // -Djava.library.path="./cpp/build/lib"
     public static void main(String[] args) {
-        ColorModel.getRGBdefault();
+        if (OSType.computeType().equals(OSType.MAC)) {
+            ColorModel.getRGBdefault();
+        }
         String javaLibPath = System.getProperty("java.library.path");
         System.out.println(javaLibPath);
         Native.init();

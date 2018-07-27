@@ -1,0 +1,11 @@
+apply plugin: 'java'
+
+version 'unspecified'
+
+sourceSets {
+    main {
+        resources {
+            srcDirs "src/main/resources", "../cpp/build/lib"
+        }
+    }
+}
