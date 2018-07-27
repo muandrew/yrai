@@ -1,8 +1,10 @@
+apply plugin: 'application'
 apply plugin: 'java'
 
 version 'unspecified'
 
 sourceCompatibility = 1.8
+mainClassName = 'com.muandrew.root.Root'
 
 repositories {
     mavenCentral()
