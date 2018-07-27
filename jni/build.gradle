@@ -6,6 +6,10 @@ version 'unspecified'
 sourceCompatibility = 1.8
 mainClassName = 'com.muandrew.root.Root'
 
+run() {
+    systemProperty "java.library.path", "./"
+}
+
 repositories {
     mavenCentral()
 }
