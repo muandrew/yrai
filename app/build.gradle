@@ -1,4 +1,7 @@
+apply plugin: 'application'
 apply plugin: 'kotlin'
+
+mainClassName = 'com.muandrew.yari.KRunnerKt'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
